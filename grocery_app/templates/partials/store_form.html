@@ -1,0 +1,21 @@
+<fieldset>
+    {{ form.csrf_token }}
+    <legend>Please enter your information:</legend>
+
+    {{form.title.label}}
+    {{form.title}}
+
+    {{form.address.label}}
+    {{form.address}}
+
+    <ul>
+        {% for error in form.title.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+    </ul>
+    <!-- TODO: Remove the next paragraph and use the `form` object passed in 
+        from the route to render a form. -->
+    
+    
+    {{form.submit}}
+</fieldset>

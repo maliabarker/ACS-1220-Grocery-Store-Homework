@@ -4,38 +4,7 @@
 <h1>New Item</h1>
 
 <form method="POST" action="{{ url_for('main.new_item') }}">
-    {{ form.csrf_token }}
-    <fieldset>
-        <legend>Please enter your product information:</legend>
-
-        {{form.name.label}}
-        {{form.name}}
-
-        {{form.price.label}}
-        {{form.price}}
-
-        {{form.category.label}}
-        {{form.category}}
-
-        {{form.photo_url.label}}
-        {{form.photo_url}}
-
-        {{form.store.label}}
-        {{form.store}}
-
-        <ul>
-            {% for error in form.name.errors %}
-                <li class="error">{{ error }}</li>
-            {% endfor %}
-        </ul>
-
-
-        <!-- TODO: Remove the next paragraph and use the `form` object passed in 
-            from the route to render a form. -->
-        
-        {{ form.submit }}
-        <!-- <input type="submit" value="Submit"> -->
-    </fieldset>
+    {% include 'partials/item_form.html' %}
 </form>
 
 
