@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Store - {{ store.title }}</h1>
+<h1 class="mt-4">Store - {{ store.title }}</h1>
+<p><em>Created by {{ store.created_by.username }}</em></p>
 
 <strong>Address:</strong> {{ store.address }}
 
@@ -18,7 +19,7 @@
 </div>
 
 
-<h2>Edit Store</h2>
+<h2 class="mt-4">Edit Store</h2>
 
 <form method="POST" action="{{ url_for('main.store_detail', store_id=store.id) }}">
     {% include 'partials/store_form.html' %}

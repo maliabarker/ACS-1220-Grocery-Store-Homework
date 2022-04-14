@@ -2,6 +2,11 @@
 {% block content %}
 
 <h1>Item - {{ item.name }}</h1>
+<p><em>Created by {{ item.created_by.username }}</em></p>
+
+<form method='POST' action="/add_to_shopping_list/{{ item.id }}">
+    <input type="submit" value="Add to Shopping List" class="btn btn-secondary">
+</form>
 
 <p><img src="{{ item.photo_url }}" width="250px" height="250px"></p>
 

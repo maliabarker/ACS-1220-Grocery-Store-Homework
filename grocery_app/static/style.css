@@ -43,7 +43,7 @@ fieldset input {
 }
 
 input[type=submit] {
-    width: 100px;
+    /* width: 100px; */
     align-self: flex-end;
 }
 

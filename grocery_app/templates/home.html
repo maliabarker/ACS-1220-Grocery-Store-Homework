@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if current_user.is_authenticated %}
+    <p>Welcome back {{ current_user.username }}!</p> 
+{% endif %}
+
 <h1>Grocery Store Tracker</h1>
+
 
 <p><em>The best place to track prices and find the hottest deals!</em></p>
 
