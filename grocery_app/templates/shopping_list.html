@@ -1,13 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Your Shopping List</h2>
-<div class="items">
-    {% for item in shopping_list %}
-        <div class="item-details">
-            <a href="/item/{{ item.id }}"><img src="{{ item.photo_url }}" alt="{{ item.name }}" width="200px">
-            <p><strong>{{ item.name }}</strong></p></a>
-            <p><strong>Price: ${{ item.price }}</strong></p>
+<div class="container">
+    {%- for item_row in shopping_list | batch(3) %}
+        <div class="row">
+            {%- for item in item_row %}
+                <div class="col my-2">
+                    <a href="/item/{{ item.id }}"><img src="{{ item.photo_url }}" alt="{{ item.name }}" width="200px">
+                    <p><strong>{{ item.name }}</strong></p></a>
+                    <p><strong>Price: ${{ item.price }}</strong></p>
+                    <a href="/delete_from_shopping_list/{{ item.id }}" class="btn btn-danger">Remove Item</a>
+                </div>
+            {%- endfor %}
         </div>
-    {% endfor %}
+    {%- endfor %}
+    
+    {#
+    <ul class="list-group">
+        
+        {% for item in shopping_list %}
+            <li>
+                <div class="list-group-item">
+                    <a href="/item/{{ item.id }}"><img src="{{ item.photo_url }}" alt="{{ item.name }}" width="200px">
+                    <p><strong>{{ item.name }}</strong></p></a>
+                    <p><strong>Price: ${{ item.price }}</strong></p>
+                    <button type="submit" action="/delete_from_shopping_list/{{ item.id }}" methods="POST" class="btn btn-danger">Remove Item</button>
+                </div>
+            </li>
+            
+        {% endfor %}
+        
+    </ul>
+    #}
 </div>
 {% endblock %}

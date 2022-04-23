@@ -108,7 +108,7 @@ def item_detail(item_id):
     item = GroceryItem.query.filter_by(id=item_id).one()
     return render_template('item_detail.html', item=item, form=form)
 
-@main.route('/add_to_shopping_list/<item_id>', methods=['POST'])
+@main.route('/add_to_shopping_list/<item_id>', methods=['GET', 'POST'])
 @login_required
 def add_to_shopping_list(item_id):
     item = GroceryItem.query.get(item_id)
@@ -118,6 +118,17 @@ def add_to_shopping_list(item_id):
     db.session.commit()
     flash(f'{item.name} added to your shopping list')
     return redirect(url_for('main.item_detail', item_id=item.id))
+
+@main.route('/delete_from_shopping_list/<item_id>', methods=['GET', 'POST'])
+@login_required
+def delete_from_shopping_list(item_id):
+    item = GroceryItem.query.get(item_id)
+    print(item)
+    current_user.shopping_list_items.remove(item)
+    db.session.add(current_user)
+    db.session.commit()
+    flash(f'Deleted {item.name} from your shopping cart')
+    return redirect(url_for('main.shopping_list', shopping_list=current_user.shopping_list_items))
 
 @main.route('/shopping_list')
 @login_required
